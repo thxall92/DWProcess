@@ -32,7 +32,8 @@ val networkModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-            .create(DWApi::class.java)
     }
-//    single { RxNetworkErrorHandler(get(), get()) }
+    single {
+        (get(named(NETWORK_RETROFIT_ADAPTER)) as Retrofit).create(DWApi::class.java)
+    }
 }

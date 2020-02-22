@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DWProcess</string>
+
+    <string name="my_account_list">내 계좌 목록</string>
+
+    <string name="amount_input">금액 입력</string>
+    <string name="amount_input_hint">금액 입력 (50만원 이하)</string>
+
+    <string name="ok">확인</string>
 </resources>

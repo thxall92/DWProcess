@@ -6,9 +6,9 @@ class DWProcessRepository(private val api: DWApi) {
 
     fun getWithdrawAccountList() = api.getWithdrawAccountList()
 
-    fun getDepositAccountList() = api.getDepositAccountList()
+//    fun getDepositAccountList() = api.getDepositAccountList()
 
-    fun getDepositContactList() = api.getDepositContactList()
+//    fun getDepositContactList() = api.getDepositContactList()
 
 //    fun transferAccount(accountNumber: String, amount: Int, receiverAccountNumber: String): Single<String> {
 //        return api.transferAccount(accountNumber, amount, receiverAccountNumber)
