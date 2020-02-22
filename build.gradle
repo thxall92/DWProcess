@@ -9,6 +9,11 @@ buildscript {
         kotlinVersion = '1.3.61'
         gradleVersion = '3.5.3'
 
+        koinVersion = '2.0.1'
+
+        retrofitVersion = '2.7.1'
+        okHttpVersion = '4.4.0'
+
     }
     repositories {
         google()
