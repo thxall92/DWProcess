@@ -4,11 +4,15 @@ import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.dwprocess.base.BaseViewModel
+import com.example.dwprocess.data.model.DepositAccount
 import com.example.dwprocess.data.model.DepositAccountInfo
+import com.example.dwprocess.data.model.DepositContact
 import com.example.dwprocess.ext.networkCommunication
 import com.example.dwprocess.repository.DWProcessRepository
 import io.reactivex.Completable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
+import java.util.function.BiFunction
 
 class WithdrawAccountListViewModel(
     private val dwProcessRepository: DWProcessRepository
@@ -20,7 +24,14 @@ class WithdrawAccountListViewModel(
     var sortedAddressList = MutableLiveData<List<DepositAccountInfo>>()
 
     init {
-        sortAccountList()
+        dwProcessRepository.getDepositAccountList()
+            .networkCommunication()
+            .doOnSuccess { listItem ->
+                accountList.postValue(listItem.map{
+                    it.toDepositAccountInfo()
+                })
+            }
+            .ignoreElement()
     }
 
     fun sortAccountList() {
@@ -43,18 +54,12 @@ class WithdrawAccountListViewModel(
             }
             .ignoreElement()
 
+
         Completable.merge(listOf(accountListFetch, contactListFetch))
             .doOnComplete {
                 Log.d("WithdrawAccountList", "finish fetching")
-//                Loading.dismiss()
             }
             .subscribe {
-//                depositAddressList.addSource(accountList) {
-//                        value -> depositAddressList.setValue(value)
-//                }
-//                depositAddressList.addSource(contactList) {
-//                        value -> depositAddressList.setValue(value)
-//                }
                 sortedAddressList.postValue(
                     accountList.value!!.union(contactList.value!!)?.sortedBy {
                         it.accountHolder

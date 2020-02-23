@@ -5,5 +5,5 @@ data class DepositAccount(
     val accountNumber: String,
     val isEnabled: Boolean
 ){
-   fun toDepositAccountInfo() = DepositAccountInfo(accountHolder, accountNumber, isEnabled)
+   fun toDepositAccountInfo() = DepositAccountInfo(accountHolder, accountNumber, isEnabled, false)
 }

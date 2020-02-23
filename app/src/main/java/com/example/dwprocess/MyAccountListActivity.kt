@@ -9,7 +9,6 @@ import com.example.dwprocess.databinding.ActivityMyAccountListBinding
 import com.example.dwprocess.databinding.MyAccountItemBinding
 import com.example.dwprocess.ui.AmountInputActivity
 import com.example.dwprocess.viewmodel.AccountListViewModel
-import kotlinx.android.synthetic.main.my_account_item.*
 import org.jetbrains.anko.intentFor
 import org.koin.android.viewmodel.ext.android.viewModel
 

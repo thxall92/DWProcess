@@ -23,9 +23,9 @@ interface DWApi {
                         @Field("amount") amount: Int,
                         @Field("receiverAccountNumber") receiverAccountNumber: String): Single<Any>
 
-//    @FormUrlEncoded
-//    @POST("transfer/contact")
-//    fun transferContact(@Field("accountNumber") accountNumber: String,
-//                        @Field("amount") amount: Int,
-//                        @Field("receiverPhoneNumber") receiverPhoneNumber: String): Single<Map<String, Any>>
+    @FormUrlEncoded
+    @POST("transfer/contact")
+    fun transferContact(@Field("accountNumber") accountNumber: String,
+                        @Field("amount") amount: Int,
+                        @Field("receiverPhoneNumber") receiverPhoneNumber: String): Single<Any>
 }

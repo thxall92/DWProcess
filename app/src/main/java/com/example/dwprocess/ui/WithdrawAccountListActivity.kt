@@ -41,7 +41,10 @@ class WithdrawAccountListActivity :
                     R.layout.deposit_account_item,
                     BR.account
                 ) {
-                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<DepositAccountItemBinding> {
+                    override fun onCreateViewHolder(
+                        parent: ViewGroup,
+                        viewType: Int
+                    ): BaseViewHolder<DepositAccountItemBinding> {
                         return super.onCreateViewHolder(parent, viewType).apply {
                             itemView.setOnClickListener {
                                 binding.account?.let {
@@ -51,11 +54,16 @@ class WithdrawAccountListActivity :
                                                 TransferActivity.MY_ACCOUNT_NUMBER to myAccountNumber,
                                                 TransferActivity.DEPOSIT_ACCOUNT_HOLDER to it.accountHolder,
                                                 TransferActivity.DEPOSIT_ACCOUNT_NUMBER to it.depositAddress,
-                                                TransferActivity.AMOUNT to amount
+                                                TransferActivity.AMOUNT to amount,
+                                                TransferActivity.IS_PHONE_ADRESS_TYPE to it.isPhoneAddressType
                                             )
                                         )
                                     } else {
-                                        Toast.makeText(this@WithdrawAccountListActivity, R.string.account_err_desc, Toast.LENGTH_LONG).show()
+                                        Toast.makeText(
+                                            this@WithdrawAccountListActivity,
+                                            R.string.account_err_desc,
+                                            Toast.LENGTH_LONG
+                                        ).show()
                                     }
                                 }
                             }
@@ -66,11 +74,8 @@ class WithdrawAccountListActivity :
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        withdrawAccountListViewModel.sortAccountList()
+    }
 }
-
-//    override fun onResume() {
-//        super.onResume()
-//
-//        withdrawAccountListViewModel.sortAccountList()
-//    }
-

@@ -7,5 +7,5 @@ data class DepositContact(
     val accountHolder : String,
     val phoneNumber: String
 ){
-    fun toDepositAccountInfo() = DepositAccountInfo(accountHolder, phoneNumber, true)
+    fun toDepositAccountInfo() = DepositAccountInfo(accountHolder, phoneNumber, true, true)
 }

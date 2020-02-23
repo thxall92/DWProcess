@@ -13,14 +13,9 @@ class DWProcessRepository(private val api: DWApi) {
 
     fun transferAccount(accountNumber: String, amount: Int, receiverAccountNumber: String): Single<Any> {
         return api.transferAccount(accountNumber, amount, receiverAccountNumber)
-//            .map { it }
-//            .doOnSuccess { updateOrder(true) }
     }
 
-//    fun transferContact(accountNumber: String, amount: Int, receiverPhoneNumber: String): Single<String> {
-//        return api.transferContact(accountNumber, amount, receiverPhoneNumber)
-//            .map { it.orderId }
-//            .doOnSuccess { updateOrder(true) }
-//    }
-
+    fun transferContact(accountNumber: String, amount: Int, receiverPhoneNumber: String): Single<Any> {
+        return api.transferContact(accountNumber, amount, receiverPhoneNumber)
+    }
 }

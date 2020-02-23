@@ -50,7 +50,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                         applicationContext.intentFor<TransferActivity>(
                             TransferActivity.MY_ACCOUNT_NUMBER to accountNumber,
                             TransferActivity.DEPOSIT_ACCOUNT_NUMBER to depositAddress,
-                            TransferActivity.AMOUNT to amount
+                            TransferActivity.AMOUNT to amount,
+                            TransferActivity.IS_PHONE_ADRESS_TYPE to addressIsPhoneType
                         )
                     )
                     finish()
