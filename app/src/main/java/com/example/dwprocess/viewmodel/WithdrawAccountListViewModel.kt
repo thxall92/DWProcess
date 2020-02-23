@@ -19,6 +19,10 @@ class WithdrawAccountListViewModel(
 
     var sortedAddressList = MutableLiveData<List<DepositAccountInfo>>()
 
+    init {
+        sortAccountList()
+    }
+
     fun sortAccountList() {
 
         val accountListFetch = dwProcessRepository.getDepositAccountList()

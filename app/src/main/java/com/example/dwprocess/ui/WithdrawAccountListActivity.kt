@@ -2,6 +2,7 @@ package com.example.dwprocess.ui
 
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.dwprocess.BR
 import com.example.dwprocess.R
 import com.example.dwprocess.base.BaseActivity
@@ -40,30 +41,36 @@ class WithdrawAccountListActivity :
                     R.layout.deposit_account_item,
                     BR.account
                 ) {
-                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-                            : BaseViewHolder<DepositAccountItemBinding> {
+                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<DepositAccountItemBinding> {
                         return super.onCreateViewHolder(parent, viewType).apply {
                             itemView.setOnClickListener {
-                                startActivity(
-                                    applicationContext.intentFor<TransferActivity>(
-                                        TransferActivity.MY_ACCOUNT_NUMBER to myAccountNumber,
-                                        TransferActivity.DEPOSIT_ACCOUNT_HOLDER to binding.account!!.accountHolder,
-                                        TransferActivity.DEPOSIT_ACCOUNT_NUMBER to binding.account!!.depositAddress,
-                                        TransferActivity.AMOUNT to amount
-                                    )
-                                )
+                                binding.account?.let {
+                                    if (it.isEnabled) {
+                                        startActivity(
+                                            applicationContext.intentFor<TransferActivity>(
+                                                TransferActivity.MY_ACCOUNT_NUMBER to myAccountNumber,
+                                                TransferActivity.DEPOSIT_ACCOUNT_HOLDER to it.accountHolder,
+                                                TransferActivity.DEPOSIT_ACCOUNT_NUMBER to it.depositAddress,
+                                                TransferActivity.AMOUNT to amount
+                                            )
+                                        )
+                                    } else {
+                                        Toast.makeText(this@WithdrawAccountListActivity, R.string.account_err_desc, Toast.LENGTH_LONG).show()
+                                    }
+                                }
                             }
                         }
-
                     }
+
                 }
         }
-
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        withdrawAccountListViewModel.sortAccountList()
-    }
 }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//        withdrawAccountListViewModel.sortAccountList()
+//    }
+

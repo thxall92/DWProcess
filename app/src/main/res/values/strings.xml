@@ -10,5 +10,7 @@
 
     <string name="transfer">보내기</string>
 
+    <string name="account_err_desc">해당 계좌는 입금이 불가능합니다. 다른 계좌로 입금해 주세요.</string>
+
     <string name="ok">확인</string>
 </resources>
