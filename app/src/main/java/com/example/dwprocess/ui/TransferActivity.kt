@@ -9,7 +9,7 @@ import com.example.dwprocess.repository.DWProcessRepository
 import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
 
-class TransferActivity  : BaseActivity<ActivityTransferBinding>(R.layout.activity_transfer) {
+class TransferActivity : BaseActivity<ActivityTransferBinding>(R.layout.activity_transfer) {
 
     companion object {
         const val MY_ACCOUNT_NUMBER = "MY_ACCOUNT_NUMBER"
@@ -18,10 +18,10 @@ class TransferActivity  : BaseActivity<ActivityTransferBinding>(R.layout.activit
         const val AMOUNT = "AMOUNT"
     }
 
-    private var myAccountNumber : String = ""
-    private var depositAccountHolder : String = ""
-    private var depositAccountNumber : String = ""
-    private var amount : Int = 0
+    private var myAccountNumber: String = ""
+    private var depositAccountHolder: String = ""
+    private var depositAccountNumber: String = ""
+    private var amount: Int = 0
 
     private val dwProcessRepository by inject<DWProcessRepository>()
 
@@ -29,19 +29,26 @@ class TransferActivity  : BaseActivity<ActivityTransferBinding>(R.layout.activit
         super.onCreate(savedInstanceState)
 
         myAccountNumber = intent.getStringExtra(MY_ACCOUNT_NUMBER)!!
-        depositAccountHolder = intent.getStringExtra(DEPOSIT_ACCOUNT_HOLDER)!!
+        if (intent.hasExtra(DEPOSIT_ACCOUNT_HOLDER)) {
+            depositAccountHolder = intent.getStringExtra(DEPOSIT_ACCOUNT_HOLDER)!!
+        }
+
         depositAccountNumber = intent.getStringExtra(DEPOSIT_ACCOUNT_NUMBER)!!
         amount = intent.getStringExtra(AMOUNT)!!.toInt()
 
-        binding.run{
+        binding.run {
             view = this@TransferActivity
 
-            val transferDesc = "$depositAccountHolder($depositAccountNumber)님께 \n${amount}원을 송금합니다."
+
+            val transferDesc = when (depositAccountHolder == "") {
+                true -> "${depositAccountNumber}로 \n${amount}원을 송금합니다."
+                false -> "$depositAccountHolder($depositAccountNumber)님께 \n${amount}원을 송금합니다."
+            }
             tvTransferDesc.text = transferDesc
         }
     }
 
-    fun handleTransfer(){
-        dwProcessRepository.transferAccount(myAccountNumber,amount,depositAccountNumber)
+    fun handleTransfer() {
+        dwProcessRepository.transferAccount(myAccountNumber, amount, depositAccountNumber)
     }
 }
