@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="view"
-            type="com.example.dwprocess.ui.AmountInputActivity" />
+            name="vm"
+            type="com.example.dwprocess.viewmodel.WithdrawAccountListViewModel" />
+
     </data>
 
     <LinearLayout
@@ -24,25 +24,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="12dp"
-                android:text="@string/amount_input"
+                android:text="@string/select_receiver"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/edt_amount"
-            style="@style/EditTextBasic"
-            android:hint="@string/amount_input_hint"
-            android:imeOptions="actionDone" />
-
-        <Button
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_deposi_account_list"
+            replaceAll="@{vm.sortedAddressList}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="@string/ok"
-            android:onClick="@{() -> view.completeInputAmount()}"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/deposit_account_item" />
 
     </LinearLayout>
 </layout>

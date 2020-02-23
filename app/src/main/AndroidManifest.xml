@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.AmountInputActivity"/>
+        <activity android:name=".ui.AmountInputActivity" />
+        <activity android:name=".ui.WithdrawAccountListActivity" />
+        <activity android:name=".ui.TransferActivity" />
     </application>
 
 </manifest>

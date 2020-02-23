@@ -6,5 +6,9 @@
     <string name="amount_input">금액 입력</string>
     <string name="amount_input_hint">금액 입력 (50만원 이하)</string>
 
+    <string name="select_receiver">받는 사람 선택</string>
+
+    <string name="transfer">보내기</string>
+
     <string name="ok">확인</string>
 </resources>

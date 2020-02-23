@@ -7,7 +7,8 @@
 
         <variable
             name="view"
-            type="com.example.dwprocess.ui.AmountInputActivity" />
+            type="com.example.dwprocess.ui.TransferActivity" />
+
     </data>
 
     <LinearLayout
@@ -24,25 +25,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="12dp"
-                android:text="@string/amount_input"
+                android:text="@string/transfer"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/edt_amount"
-            style="@style/EditTextBasic"
-            android:hint="@string/amount_input_hint"
-            android:imeOptions="actionDone" />
+        <TextView
+            android:id="@+id/tv_transfer_desc"
+            style="@style/BaseStyle"
+            tools:text="김은혜(01234567890)님게 \n9000원을 송금합니다."/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="@string/ok"
-            android:onClick="@{() -> view.completeInputAmount()}"/>
+            android:text="@string/transfer"
+            android:onClick="@{() -> view.handleTransfer()}"/>
 
     </LinearLayout>
 </layout>
