@@ -1,13 +1,12 @@
-package com.example.dwprocess.ui
+package com.example.dwprocess
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import com.example.dwprocess.MyAccountListActivity
-import com.example.dwprocess.R
 import com.example.dwprocess.base.BaseActivity
 import com.example.dwprocess.databinding.ActivitySplashBinding
+import com.example.dwprocess.ui.TransferActivity
 import org.jetbrains.anko.intentFor
 
 
@@ -28,6 +27,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         if (uriString.isNullOrBlank()) {
             Handler().postDelayed({
                 startActivity(Intent(applicationContext, MyAccountListActivity::class.java))
+                overridePendingTransition(0,0)
                 finish()
             },DURATION)
         } else {
